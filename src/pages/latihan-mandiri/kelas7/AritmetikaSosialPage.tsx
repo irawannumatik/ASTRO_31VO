@@ -5,12 +5,12 @@ import { BookOpen, ChevronRight } from "lucide-react";
 import { playPopSound } from "@/hooks/useAudio";
 
 const subtopics = [
-  "JUAL BELI, UNTUNG DAN RUGI",
-  "DISKON",
-  "BRUTO, NETTO DAN TARA",
-  "BUNGA TUNGGAL",
-  "PAJAK PERTAMBAHAN NILAI (PPN)",
-  "PAJAK PENGHASILAN (PPH)",
+  { name: "JUAL BELI, UNTUNG DAN RUGI", path: "/latihan-mandiri/kelas-7/aritmetika-sosial/jual-beli-untung-rugi" },
+  { name: "DISKON", path: "/latihan-mandiri/kelas-7/aritmetika-sosial/diskon" },
+  { name: "BRUTO, NETTO DAN TARA", path: "/latihan-mandiri/kelas-7/aritmetika-sosial/bruto-netto-tara" },
+  { name: "BUNGA TUNGGAL", path: "/latihan-mandiri/kelas-7/aritmetika-sosial/bunga-tunggal" },
+  { name: "PAJAK PERTAMBAHAN NILAI (PPN)", path: "/latihan-mandiri/kelas-7/aritmetika-sosial/ppn" },
+  { name: "PAJAK PENGHASILAN (PPH)", path: "/latihan-mandiri/kelas-7/aritmetika-sosial/pph" },
 ];
 
 const AritmetikaSosialPage = () => {
@@ -30,15 +30,15 @@ const AritmetikaSosialPage = () => {
         <div className="flex flex-col gap-3 animate-slide-up">
           {subtopics.map((subtopic, i) => (
             <button
-              key={subtopic}
-              onClick={() => playPopSound()}
+              key={subtopic.name}
+              onClick={() => { playPopSound(); navigate(subtopic.path); }}
               className="group flex items-center gap-4 bg-card/80 backdrop-blur border border-border rounded-xl px-5 py-4
                 hover:border-accent/60 transition-all duration-300
                 cursor-pointer text-left animate-slide-up"
               style={{ animationDelay: `${i * 0.03}s` }}
             >
               <ChevronRight className="w-4 h-4 text-accent shrink-0 group-hover:translate-x-1 transition-transform" />
-              <span className="font-body text-sm text-white">{subtopic}</span>
+              <span className="font-body text-sm text-white">{subtopic.name}</span>
             </button>
           ))}
         </div>

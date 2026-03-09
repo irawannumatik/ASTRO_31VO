@@ -43,6 +43,12 @@ import PerbandinganSenilaiK7Page from "./pages/latihan-mandiri/kelas7/perbanding
 import PerbandinganCampuranK7Page from "./pages/latihan-mandiri/kelas7/perbandingan/PerbandinganCampuranPage";
 import PerbandinganSkalaK7Page from "./pages/latihan-mandiri/kelas7/perbandingan/PerbandinganSkalaPage";
 import AritmetikaSosialK7Page from "./pages/latihan-mandiri/kelas7/AritmetikaSosialPage";
+import JualBeliUntungRugiK7Page from "./pages/latihan-mandiri/kelas7/aritmetika-sosial/JualBeliUntungRugiPage";
+import DiskonK7Page from "./pages/latihan-mandiri/kelas7/aritmetika-sosial/DiskonPage";
+import BrutoNettoTaraK7Page from "./pages/latihan-mandiri/kelas7/aritmetika-sosial/BrutoNettoTaraPage";
+import BungaTunggalK7Page from "./pages/latihan-mandiri/kelas7/aritmetika-sosial/BungaTunggalPage";
+import PPNK7Page from "./pages/latihan-mandiri/kelas7/aritmetika-sosial/PPNPage";
+import PPhK7Page from "./pages/latihan-mandiri/kelas7/aritmetika-sosial/PPhPage";
 import GarisDanSudutK7Page from "./pages/latihan-mandiri/kelas7/GarisDanSudutPage";
 import SegitigaSegiempatK7Page from "./pages/latihan-mandiri/kelas7/SegitigaSegiempatPage";
 import HimpunanK7Page from "./pages/latihan-mandiri/kelas7/HimpunanPage";
@@ -195,6 +201,12 @@ const AppInner = () => {
       <Route path="/latihan-mandiri/kelas-7/perbandingan/campuran" element={<PerbandinganCampuranK7Page />} />
       <Route path="/latihan-mandiri/kelas-7/perbandingan/skala" element={<PerbandinganSkalaK7Page />} />
       <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial" element={<AritmetikaSosialK7Page />} />
+      <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial/jual-beli-untung-rugi" element={<JualBeliUntungRugiK7Page />} />
+      <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial/diskon" element={<DiskonK7Page />} />
+      <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial/bruto-netto-tara" element={<BrutoNettoTaraK7Page />} />
+      <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial/bunga-tunggal" element={<BungaTunggalK7Page />} />
+      <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial/ppn" element={<PPNK7Page />} />
+      <Route path="/latihan-mandiri/kelas-7/aritmetika-sosial/pph" element={<PPhK7Page />} />
       <Route path="/latihan-mandiri/kelas-7/garis-dan-sudut" element={<GarisDanSudutK7Page />} />
       <Route path="/latihan-mandiri/kelas-7/segitiga-dan-segiempat" element={<SegitigaSegiempatK7Page />} />
       <Route path="/latihan-mandiri/kelas-7/himpunan" element={<HimpunanK7Page />} />
