@@ -4,8 +4,11 @@ import {
   streamText,
   UIMessage,
 } from 'ai'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
-export const maxDuration = 30
+export const config = {
+  maxDuration: 30,
+}
 
 const NUMATIK_SYSTEM_PROMPT = `[IDENTITY & BRANDING]
 Nama: Kamu adalah NUMATIK AI, asisten cerdas resmi dari aplikasi Math Space.
@@ -32,18 +35,44 @@ Jika siswa salah menjawab, jangan katakan "Salah", tapi katakan "Hampir tepat! A
 [GREETING]
 Sapa pengguna dengan ramah dan perkenalkan diri sebagai NUMATIK AI, asisten matematika mereka di Math Space.`
 
-export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json()
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' })
+  }
 
-  const result = streamText({
-    model: 'google/gemini-2.5-flash-preview-05-20',
-    system: NUMATIK_SYSTEM_PROMPT,
-    messages: await convertToModelMessages(messages),
-    abortSignal: req.signal,
-  })
+  try {
+    const { messages }: { messages: UIMessage[] } = req.body
 
-  return result.toUIMessageStreamResponse({
-    originalMessages: messages,
-    consumeSseStream: consumeStream,
-  })
+    const result = streamText({
+      model: 'google/gemini-2.5-flash-preview-05-20',
+      system: NUMATIK_SYSTEM_PROMPT,
+      messages: await convertToModelMessages(messages),
+    })
+
+    // Set SSE headers
+    res.setHeader('Content-Type', 'text/event-stream')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+
+    const stream = result.toUIMessageStream({
+      originalMessages: messages,
+      consumeSseStream: consumeStream,
+    })
+
+    const reader = stream.getReader()
+    
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      
+      // Convert chunk to string and write as SSE
+      const text = new TextDecoder().decode(value)
+      res.write(text)
+    }
+    
+    res.end()
+  } catch (error) {
+    console.error('Chat API error:', error)
+    return res.status(500).json({ error: 'Internal server error' })
+  }
 }
