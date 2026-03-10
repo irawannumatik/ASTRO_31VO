@@ -8,7 +8,7 @@ const subtopics = [
   { name: "PENJUMLAHAN BILANGAN BULAT", path: "/materi-matematika/kelas-7/bilangan-bulat/penjumlahan" },
   { name: "PENGURANGAN BILANGAN BULAT", path: "/materi-matematika/kelas-7/bilangan-bulat/pengurangan" },
   { name: "PERKALIAN BILANGAN BULAT", path: "/materi-matematika/kelas-7/bilangan-bulat/perkalian" },
-  { name: "PEMBAGIAN BILANGAN BULAT", path: null },
+  { name: "PEMBAGIAN BILANGAN BULAT", path: "/materi-matematika/kelas-7/bilangan-bulat/pembagian" },
   { name: "OPERASI HITUNG CAMPURAN BILANGAN BULAT", path: null },
   { name: "KPK DAN FPB", path: null },
 ];
